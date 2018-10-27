@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "863321863674",
+    "firebase_url": "https://alert-ap-fb.firebaseio.com",
+    "project_id": "alert-ap-fb",
+    "storage_bucket": "alert-ap-fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863321863674:android:f917f28a6ee23a64",
+        "android_client_info": {
+          "package_name": "org.mdss.magicapps.alertap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863321863674-fl0dhaqat1iv30qqbn1faqtmiekl3bmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvSniVMNPRbBS_xeD14LuW8phcAQ9v18Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
