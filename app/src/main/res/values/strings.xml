@@ -14,4 +14,7 @@
     <string name="FCM_PREF">org.mdss.magicapps.alertap.fcm_pref</string>
     <string name="FCM_TOKEN">org.mdss.magicapps.alertap.fcm_token</string>
     <string name="LOAD_URL">http://mindwebs.org</string>
+
+    <string name="location_time">"%3$tr"</string>
+    <string name="location_text">"Latitude:%1$.4f \n longitude: %2$.4f, %3$tr"</string>
 </resources>

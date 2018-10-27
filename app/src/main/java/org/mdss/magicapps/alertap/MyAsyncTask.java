@@ -10,10 +10,11 @@ import org.json.JSONObject;
 public class MyAsyncTask extends AsyncTask<double[],Void,String > {
 
     //TextView wtime ;
-    TextView wdetails;
-    public MyAsyncTask(TextView weather1){
+    private TextView[] wdetails;
+    public MyAsyncTask(TextView[] weather1){
         //wtime = weatherTime;
-        wdetails = weather1;
+        for(int i =0; i<weather1.length; i++)
+            wdetails[i] = weather1[i];
     }
 //    @Override
 //    protected String doInBackground(Void... voids) {
@@ -38,36 +39,27 @@ public class MyAsyncTask extends AsyncTask<double[],Void,String > {
 
         super.onPostExecute(s);
         try {
+            String v[] = new String[6];
             JSONObject jsonObject = new JSONObject(s);
-            JSONArray itemsArray = jsonObject.getJSONArray("weather");
-            for (int i= 0; i< itemsArray.length(); i++){
-                JSONObject wea = itemsArray.getJSONObject(i);
-                //String weaName = null;
-                String weaDetails = null;
-                //String price = null;
-                //JSONObject volumeInfo = book.getJSONObject("volumeInfo");
-                try{
-                    //weaName = wea.getString("main");
-
-                    weaDetails = wea.getString("main");
-                    Log.d("aa",weaDetails);
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-                //int len = auth.length()-2;
-                //Log.d("ab",price);
-                if(weaDetails !=null) {
-                    wdetails.setText(weaDetails);
-                    //wname.setText(weaName);
-                    return;
-                }
-            }
-            //wname.setText("No Result Found");
-            wdetails.setText("No Result Found");
+            JSONObject data = jsonObject.getJSONObject("data");
+            JSONObject iaqi = data.getJSONObject("iaqi");
+            JSONObject co = iaqi.getJSONObject("co");
+            v[0] = co.getString("v");
+            JSONObject no2 = iaqi.getJSONObject("no2");
+            v[1] = no2.getString("v");
+            JSONObject so2 = iaqi.getJSONObject("so2");
+            v[2] = so2.getString("v");
+            JSONObject pm10 = iaqi.getJSONObject("pm10");
+            v[3] = pm10.getString("v");
+            JSONObject pm25 = iaqi.getJSONObject("pm25");
+            v[4] = pm25.getString("v");
+            JSONObject o3 = iaqi.getJSONObject("o3");
+            v[5] = o3.getString("v");
+            for(int i =0; i<wdetails.length; i++)
+                wdetails[i].setText(v[i]);
         }catch (Exception e){
             //wname.setText("No Result Found");
-            wdetails.setText("No Result Found");
+            wdetails[0].setText("No Result Found");
             e.printStackTrace();
         }
 
