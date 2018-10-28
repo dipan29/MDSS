@@ -4,8 +4,8 @@
     package="org.mdss.magicapps.alertap">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".SearchActivity" />
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,22 +29,32 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity" />
-
-        <activity android:name=".Auth"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".Auth" />
 
         <service android:name=".FcmInstanceIdService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"></action>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".FcmMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"></action>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <!-- FOR COLOR AND ICON SELECTION OF NOTIFICATION
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCJZqAPc3nnWLPUkapE8bC-qIfwTJnQALw" />
+
+        <!-- Periodic Service -->
+        <service
+            android:name=".SimpleWakefulService"
+            android:permission="android.permission.BIND_JOB_SERVICE"></service>
+
+        <receiver android:name=".YourWakefulReceiver" />
+        <!--
+        FOR COLOR AND ICON SELECTION OF NOTIFICATION
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_ic_notification" />
@@ -52,6 +63,7 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
         -->
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>

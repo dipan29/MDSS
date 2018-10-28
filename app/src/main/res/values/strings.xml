@@ -13,6 +13,8 @@
 
     <string name="FCM_PREF">org.mdss.magicapps.alertap.fcm_pref</string>
     <string name="FCM_TOKEN">org.mdss.magicapps.alertap.fcm_token</string>
+    <string name="user_name">org.mdss.magicapps.alertap.user_name</string>
+    <string name="user_email">org.mdss.magicapps.alertap.user_email</string>
     <string name="LOAD_URL">http://mindwebs.org</string>
 
     <string name="location_time">"%3$tr"</string>

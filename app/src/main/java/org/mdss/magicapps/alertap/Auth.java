@@ -102,6 +102,15 @@ public class Auth extends AppCompatActivity {
 
                 final String name = etname.getText().toString();
                 final String email = etemail.getText().toString();
+                SharedPreferences nameS = getApplicationContext().getSharedPreferences(getString(R.string.user_name),Context.MODE_PRIVATE);
+                SharedPreferences emailS = getApplicationContext().getSharedPreferences(getString(R.string.user_email),Context.MODE_PRIVATE);
+
+                SharedPreferences.Editor nam = nameS.edit();
+                nam.putString(getString(R.string.user_email),name);
+                nam.apply();
+                nam = emailS.edit();
+                nam.putString(getString(R.string.user_email),email);
+                nam.apply();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override

@@ -1,58 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".HomeActivity"
-    tools:showIn="@layout/app_bar_home"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="150px"
-        android:background="@drawable/boxsearch"
-        android:hint="Your Location"
-        android:textAlignment="center"
-        android:id="@+id/searchAdress"/>
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/currentLoc"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/co"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/o3"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/no2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/so2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pm10"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pm25"/>
+        <fragment
+
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity"
+            android:layout_weight="1"/>
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_weight="1"/>
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:elevation="10dp"
+
+            android:id="@+id/relative"
+            android:layout_weight="2">
+                <LinearLayout
+                    android:layout_marginTop="55sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="8dp">
+                        <ImageView
+                            android:onClick="clear"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:id="@+id/magnify"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="0dp"
+                            android:src="@drawable/ic_magnify"
+                            android:background="#fff"/>
+                        <AutoCompleteTextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:hint="Enter the Adress"
+                            android:layout_toRightOf="@+id/magnify"
+                            android:id="@+id/search_bar"
+                            android:singleLine="true"
+                            android:background="#fff"/>
+                </LinearLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/myLoaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:backgroundTint="#3498db"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
+                android:paddingBottom="10sp"
+                android:src="@drawable/myl"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentBottom="true"
+                    android:background="#fff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/co"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/o3"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/no2"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/so2"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pm10"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pm25"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/wh"/>
+                </LinearLayout>
+            </ScrollView>
 
 
-</LinearLayout>
+        </RelativeLayout>
+
+
+
+        <!--<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#fff"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:elevation="10dp"
+            android:fadingEdgeLength="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>-->
+</RelativeLayout>

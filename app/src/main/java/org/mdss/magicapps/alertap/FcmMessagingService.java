@@ -1,5 +1,6 @@
 package org.mdss.magicapps.alertap;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -11,6 +12,9 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by Dipan on 27-10-2018.
@@ -29,12 +33,15 @@ public class FcmMessagingService extends FirebaseMessagingService {
         String title = remoteMessage.getNotification().getTitle();
         String message = remoteMessage.getNotification().getBody();
 
+        //Multiple Notifications
+        Random random = new Random();
+        int m = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
 
         Intent intent = new Intent(this,HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "01");
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,m,intent,PendingIntent.FLAG_ONE_SHOT);
 
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "001");
         notificationBuilder.setContentTitle(title);
         notificationBuilder.setContentText(message);
         notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
@@ -45,8 +52,11 @@ public class FcmMessagingService extends FirebaseMessagingService {
         notificationBuilder.setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
         notificationBuilder.setVibrate(new long[] {0, 1000, 200,1000 });
 
+        //Notification notif = notificationBuilder.build();
+        //notif.flags |= Notification.FLAG_SHOW_LIGHTS;
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0,notificationBuilder.build());
+        notificationManager.notify(m,notificationBuilder.build());
         //notificationBuilder.setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
         //notificationBuilder.setLights(Color.MAGENTA,500,1500);
 

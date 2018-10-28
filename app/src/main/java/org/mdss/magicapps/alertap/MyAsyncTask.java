@@ -14,7 +14,7 @@ public class MyAsyncTask extends AsyncTask<double[],Void,String > {
     private TextView[] wdetails;
     public MyAsyncTask(TextView[] weather1){
         //wtime = weatherTime;
-        wdetails = new TextView[6];
+        wdetails = new TextView[7];
         for(int i =0; i<weather1.length; i++)
             wdetails[i] = weather1[i];
     }
@@ -41,51 +41,70 @@ public class MyAsyncTask extends AsyncTask<double[],Void,String > {
 
         super.onPostExecute(s);
         try {
-            String v[] = new String[6];
+            String v[] = new String[7];
             JSONObject jsonObject = new JSONObject(s);
             JSONObject data = jsonObject.getJSONObject("data");
             JSONObject iaqi = data.getJSONObject("iaqi");
             try {
                 JSONObject co = iaqi.getJSONObject("co");
-                v[0] = co.getString("v");
+                v[0] = "CO : "+co.getString("v");
             }catch (Exception e){
-                 v[0] = "no value found";
+                 //v[0] = "no value found";
                 e.printStackTrace();
             }
             try {
                 JSONObject no2 = iaqi.getJSONObject("no2");
-                v[1] = no2.getString("v");
+                v[1] = "NO2 : "+no2.getString("v");
             }catch (Exception e){
-                v[1] = "no value found";
+                //v[1] = "no value found";
                 e.printStackTrace();
             }
             try {
                 JSONObject so2 = iaqi.getJSONObject("so2");
-                v[2] = so2.getString("v");
+                v[2] = "SO2 : "+so2.getString("v");
             }catch (Exception e){
-                v[2] = "no value found";
+                //v[2] = "no value found";
                 e.printStackTrace();
             }
             try{
                 JSONObject pm10 = iaqi.getJSONObject("pm10");
-                v[3] = pm10.getString("v");
+                v[3] = "PM10 : "+pm10.getString("v");
             }catch (Exception e){
-                v[3] = "no value found";
+                //v[3] = "no value found";
                 e.printStackTrace();
             }
             try {
                 JSONObject pm25 = iaqi.getJSONObject("pm25");
-                v[4] = pm25.getString("v");
+                v[4] = "PM2.5 : "+pm25.getString("v");
             }catch (Exception e){
-                v[4] = "no value found";
+                //v[4] = "no value found";
                 e.printStackTrace();
             }
             try {
                 JSONObject o3 = iaqi.getJSONObject("o3");
-                v[5] = o3.getString("v");
+                v[5] = "O3 : "+o3.getString("v");
             }catch(Exception e)
             {
-                v[5] = "no value found";
+                //v[5] = "no value found";
+                e.printStackTrace();
+            }
+            try {
+                JSONObject t = iaqi.getJSONObject("t");
+                v[6] = "Temperature : "+ t.getString("v");
+                JSONObject h = iaqi.getJSONObject("h");
+                v[6] += "\t\tHumidity : "+ h.getString("v");
+                JSONObject w = iaqi.getJSONObject("w");
+                v[6] += "\nWind : "+ w.getString("v");
+                JSONObject r = iaqi.getJSONObject("r");
+                v[6] += "\t\tRain : "+ r.getString("v");
+                JSONObject d = iaqi.getJSONObject("d");
+                v[6] += "\n\tDew : "+ d.getString("v");
+                JSONObject p = iaqi.getJSONObject("p");
+                v[6] += "\t\tA P : "+ p.getString("v");
+
+            }catch(Exception e)
+            {
+                //v[6] = "no value found";
                 e.printStackTrace();
             }
             for(int i =0; i<wdetails.length; i++)
