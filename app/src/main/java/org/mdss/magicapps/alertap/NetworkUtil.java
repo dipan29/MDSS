@@ -14,12 +14,12 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class NetworkUtil {
-    private static final String Api_Url = "http://api.waqi.info/feed/geo:"+"20.4870;80.3052" ;
+    private static final String Api_Url = "http://api.waqi.info/feed/geo:" ;
     private static final String token = "/?token=91b240a148bac5904a1e0b29eb3ae6f54fdb4b22";
-    private static final String BOOK_BASE_URL =  "https://openweathermap.org/data/2.5/weather?"; // Base URI for the Books API
+    /*private static final String BOOK_BASE_URL =  "https://openweathermap.org/data/2.5/weather?"; // Base URI for the Books API
     private static final String QUERY_PARAM1 = "lon"; // Parameter for the search string
     private static final String QUERY_PARAM2 = "lat"; // Parameter for the search string
-    private static final String APP_ID = "appid"; // Parameter that limits search results
+    private static final String APP_ID = "appid"; // Parameter that limits search results*/
 
     public static String getBookInfo(double location[]) {
         HttpURLConnection httpURLConnection = null;
