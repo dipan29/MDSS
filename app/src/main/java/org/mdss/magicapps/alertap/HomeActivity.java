@@ -208,6 +208,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         m = LocationServices.getFusedLocationProviderClient(this);
         getLocation();
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -239,7 +240,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //END OF ALARM BROADCAST
         searchTxt = findViewById(R.id.search_bar);
         location1 = new double[2];
-        polutant = new TextView[7];
+        polutant = new TextView[8];
         polutant[0] = findViewById(R.id.co);
         polutant[1] = findViewById(R.id.no2);
         polutant[2] = findViewById(R.id.so2);
@@ -247,30 +248,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         polutant[4]= findViewById(R.id.pm25);
         polutant[5] = findViewById(R.id.o3);
         polutant[6] = findViewById(R.id.wh);
-        //currentLocation = findViewById(R.id.currentLoc);
-        //t1 = findViewById(R.id.wh);
+        polutant[7] = findViewById(R.id.aqi);
+        setPreference();
 
-        //currentLocationWeather = findViewById(R.id.currentLocW);
+
+
         Log.d("aa", "inClick");
-        //currentLocation.setText("Loading Location...");
 
-        //mMap.addMarker(new MarkerOptions().position(pos).title(address.getFeatureName()));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
         final LatLng pos = new LatLng(location1[0], location1[1]);
-        /*mMap.addMarker(new MarkerOptions().position(pos).title("Your Location"));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location1[0], location1[1]), 12.0f));*/
+
         MyAsyncTask myAsyncTask = new MyAsyncTask(polutant);
         myAsyncTask.execute(location1);
-        //toolbar.setBackgroundColor(Integer.parseInt("#0000"));
-/*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -280,7 +269,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         NavigationView navHeaderView = (NavigationView) findViewById(R.id.nav_view);
-        //navHeaderView = (NavigationView) navigationView.inflateHeaderView(R.layout.nav_header_home);
+
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String UserName = sharedPref.getString("user_name", "No name saved");
         String UserEmail = sharedPref.getString("user_email", "No email saved");
@@ -420,5 +409,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         searchTxt.setText("");
         ImageView img = (ImageView) findViewById(R.id.magnify);
         img.setImageResource(R.drawable.ic_magnify);
+    }
+    public void setPreference()
+    {
+        SharedPreferences shared = getSharedPreferences("polutantPref", Context.MODE_PRIVATE);
+        if(shared.getInt("co2",0) == 1)
+            polutant[0].setVisibility(View.VISIBLE);
+        if(shared.getInt("so2",0) == 1)
+            polutant[1].setVisibility(View.VISIBLE);
+        if(shared.getInt("no2",0) == 1)
+            polutant[2].setVisibility(View.VISIBLE);
+        if(shared.getInt("pm10",0) == 1)
+            polutant[3].setVisibility(View.VISIBLE);
+        if(shared.getInt("pm25",0) == 1)
+            polutant[4].setVisibility(View.VISIBLE);
+        if(shared.getInt("o3",0) == 1)
+            polutant[5].setVisibility(View.VISIBLE);
     }
 }

@@ -1,5 +1,6 @@
 package org.mdss.magicapps.alertap;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,7 +25,37 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void save(View view) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        //SharedPreferences.Editor = sharedPref.edit();
+        int ar[]= new int[6];
+        for(int i =0; i<6 ;i++)
+            ar[i] =0;
+        if(co2.isChecked())
+            ar[0] = 1;
+        if(no2.isChecked())
+            ar[1] = 1;
+        if(so2.isChecked())
+            ar[2] = 1;
+        if(o3.isChecked())
+            ar[3] = 1;
+        if(pm10.isChecked())
+            ar[4] = 1;
+        if(pm25.isChecked())
+            ar[5] = 1;
+        //SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPref = getSharedPreferences("polutantPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ss = sharedPref.edit();
+        ss.putInt("co2",ar[0]);
+        ss.apply();
+        ss.putInt("so2",ar[2]);
+        ss.apply();
+        ss.putInt("no2",ar[1]);
+        ss.apply();
+        ss.putInt("o3",ar[3]);
+        ss.apply();
+        ss.putInt("pm10",ar[4]);
+        ss.apply();
+        ss.putInt("pm25",ar[5]);
+        ss.apply();
+
+
     }
 }
