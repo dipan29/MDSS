@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,22 +16,18 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="97dp"
-        android:layout_height="0dp"
+        android:layout_height="97dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/txtNavName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/txtNavName"
@@ -42,18 +38,17 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="24dp"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Be Aware of the"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Tooltip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HElloe"/>
 
     <TextView
         android:id="@+id/txtNavEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -62,12 +57,5 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Air You BREATHE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNavName"
-        app:layout_constraintVertical_bias="0.0"
-         />
-
-
-</android.support.constraint.ConstraintLayout>
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
+</LinearLayout>
