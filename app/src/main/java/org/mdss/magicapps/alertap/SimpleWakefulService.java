@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.JobIntentService;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,7 +35,7 @@ public class SimpleWakefulService extends JobIntentService {
     protected String latitude, longitude;
     protected boolean gps_enabled, network_enabled;
     public static final int JOB_ID = 1;
-
+    private static final int REQUEST_LOCATION_PERMISSION = 1;
 
     static void enqueueWork(Context context, Intent work) {
         enqueueWork(context, SimpleWakefulService.class, JOB_ID, work);
@@ -54,24 +55,30 @@ public class SimpleWakefulService extends JobIntentService {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            //ActivityCompat.requestPermissions(, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
             return;
+        }else {
+            provider = locationManager.getAllProviders();
+            String prov = (String) provider.get(0);
+            Intent int01 = new Intent(this, SimpleWakefulService.class);
+            PendingIntent pendingIntent01 = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10,0,pendingIntent01);
+            try {
+                Location location = locationManager.getLastKnownLocation(prov);
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
+                String token = sharedPreferences.getString(getString(R.string.FCM_TOKEN), "");  //getting token id
+                String lat = Double.toString(location.getLatitude());
+                String lng = Double.toString(location.getLongitude());
+
+                Response.Listener<String> responseListener = null;
+
+                GetRequest registerRequest = new GetRequest(lat, lng, token, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(this);
+                queue.add(registerRequest);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
-        provider = locationManager.getAllProviders();
-        String prov = (String) provider.get(0);
-        Intent int01 = new Intent(this, SimpleWakefulService.class);
-        PendingIntent pendingIntent01 = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10,0,pendingIntent01);
-        Location location = locationManager.getLastKnownLocation(prov);
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString(getString(R.string.FCM_TOKEN),"");  //getting token id
-        String lat = Double.toString(location.getLatitude());
-        String lng = Double.toString(location.getLongitude());
-
-        Response.Listener<String> responseListener = null;
-
-        GetRequest registerRequest = new GetRequest(lat,lng,token, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(registerRequest);
 
     }
 
