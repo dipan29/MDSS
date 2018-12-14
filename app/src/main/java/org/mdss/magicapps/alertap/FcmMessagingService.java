@@ -44,7 +44,7 @@ public class FcmMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "001");
         notificationBuilder.setContentTitle(title);
         notificationBuilder.setContentText(message);
-        notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        notificationBuilder.setSmallIcon(R.drawable.logo);
         notificationBuilder.setVibrate(new long[] {0, 1000, 200,1000 });
         notificationBuilder.setLights(Color.MAGENTA,500,1500);
         notificationBuilder.setAutoCancel(true);
