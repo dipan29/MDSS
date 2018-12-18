@@ -68,11 +68,34 @@
                 android:layout_marginBottom="10sp"
                 android:paddingBottom="10sp"
                 android:src="@drawable/myl"/>
-            <ScrollView
+            <SlidingDrawer
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                android:handle="@id/handle"
+                android:content="@id/content"
+                android:topOffset="330dp">
                 <LinearLayout
+                    android:id="@+id/handle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/black_overlay">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/dash"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="#ffff"
+                        android:textSize="25dp"
+                        android:text="Get weather Data"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -80,51 +103,67 @@
                     android:background="#fff">
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
+                        android:textSize="20dp"
                         android:textAlignment="center"
                         android:visibility="visible"
                         android:id="@+id/aqi"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
+                        android:textSize="15dp"
+                        android:textAlignment="center"
                         android:visibility="visible"
                         android:id="@+id/co"/>
                     <TextView
                         android:visibility="visible"
-                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/o3"/>
                     <TextView
                         android:visibility="visible"
-                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/no2"/>
                     <TextView
                         android:visibility="visible"
-                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/so2"/>
                     <TextView
                         android:visibility="visible"
-                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/pm10"/>
                     <TextView
                         android:visibility="visible"
-                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/pm25"/>
                     <TextView
                         android:visibility="visible"
-                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/wh"/>
                 </LinearLayout>
-            </ScrollView>
+            </SlidingDrawer>
 
 
         </RelativeLayout>
